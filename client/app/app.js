@@ -21,7 +21,7 @@ angular.module('flickrViewer', [
   $scope.hello = {};
   $scope.hello.hi = 'hi';
   $scope.search = {text: 'nature'};
-  var key = 'API_KEY';
+  var key = '4f8b5f95545e8e16789b2db710eae1a8';
   $scope.searchForPics = function () {
     $http({
       method: 'JSONP',
@@ -32,11 +32,22 @@ angular.module('flickrViewer', [
     });
 
     //Flickr needs this
-    var jsonFlickrApi = function(data){
+    jsonFlickrApi = function(data){
       $scope.photos = data.photos;
       console.log(data.photos);
     };
   };
 
   $scope.searchForPics();
+
+  $scope.addFav = function(imgLink) {
+    console.log(imgLink);
+    $http({
+      method: 'POST',
+      data: {id: 1, username: 'santosh', picUrl: imgLink},
+      url: '/api/postFav'
+    }).success(function(data, status) {
+      console.log(status);
+    })
+  }
 });

@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 
+var Picture = require('./server/pictureModel');
+
 var app = express();
 
 var userRouter = express.Router();
@@ -17,7 +19,24 @@ app.use('api/users', userRouter);
 app.use('api/favs', favsRouter);
 
 //Handle any route
-//app.get('*')
+app.get('*', function(req, res){
+  console.log(req.body);
+  res.sendFile('client/index.html');
+});
+
+//Handle post
+app.post('/api/postFav', function(req, res, next) {
+  var picture = Picture({
+    id: req.body.id,
+    username: req.body.username,
+    url: req.body.picUrl
+  });
+  picture.save(function(err) {
+    if(err) throw err;
+    console.log('Picture saved to favs');
+    res.send("saved");
+  })
+});
 
 var port = 3030;
 app.listen(port);

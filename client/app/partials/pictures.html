@@ -4,6 +4,6 @@
     <ul ng-repeat="picData in photos.photo">
         <li><img src="{{ picData.url_m }}" alt="{{ picData.title }}"> </li>
         <li>{{ picData.title }}</li>
-        <li></li>
+        <li><button ng-click="addFav(picData.url_m)">Fav</button></li>
     </ul>
 </div>
