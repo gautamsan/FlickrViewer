@@ -1,7 +1,7 @@
 <div class="pictures">
-    <ul>
-        <li>asdf</li>
-        <li></li>
+    <ul ng-repeat="picData in data.items">
+        <li><img src="{{ picData.media.m }}" alt=""> </li>
+        <li>{{ picData.title }}</li>
         <li></li>
     </ul>
 </div>
