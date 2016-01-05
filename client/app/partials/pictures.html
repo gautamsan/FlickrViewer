@@ -1,6 +1,8 @@
 <div class="pictures">
-    <ul ng-repeat="picData in data.items">
-        <li><img src="{{ picData.media.m }}" alt=""> </li>
+    <input type="text" ng-model="search.text">
+    <button ng-click="searchForPics()">Search</button>
+    <ul ng-repeat="picData in photos.photo">
+        <li><img src="{{ picData.url_m }}" alt="{{ picData.title }}"> </li>
         <li>{{ picData.title }}</li>
         <li></li>
     </ul>

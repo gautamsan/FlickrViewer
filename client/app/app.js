@@ -20,13 +20,23 @@ angular.module('flickrViewer', [
 .controller('MainCtrl', function($scope, $http) {
   $scope.hello = {};
   $scope.hello.hi = 'hi';
-  $http.jsonp('https://api.flickr.com/services/feeds/photos_public.gne?format=json')
+  $scope.search = {text: 'nature'};
+  var key = 'API_KEY';
+  $scope.searchForPics = function () {
+    $http({
+      method: 'JSONP',
+      params: { api_key: key, tags: $scope.search.text, safe_search: 1, per_page: 20, extras: 'url_m', format: 'json' },
+      url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search'
+    })
     .success(function(data) {
-
     });
-    jsonFlickrFeed = function(data){
-      $scope.data = data;
-      console.log(data.items);
-    }
 
+    //Flickr needs this
+    var jsonFlickrApi = function(data){
+      $scope.photos = data.photos;
+      console.log(data.photos);
+    };
+  };
+
+  $scope.searchForPics();
 });
