@@ -1,0 +1,18 @@
+<div class="modal-body">
+    <div class="img-group">
+        <carousel>
+            <slide ng-repeat="picData in photos.photo" active="thumb.active">
+                <div class="heartOutline" ng-click="addFav(picData.url_l, picData.title)">
+                </div>
+                <img ng-src="{{picData.url_l}}" alt="{{picData.title}}" class="img-responsive pic" />
+                <div class="carousel-caption-dark">{{picData.title}}</div>
+            </slide>
+<!--
+            <slide ng-if="favs" ng-repeat="picData in favoritePics" active="thumb.active">
+                <img ng-src="{{picData.url}}" alt="{{picData.title}}" class="img-responsive pic" />
+                <div class="carousel-caption-dark">{{picData.title}}</div>
+            </slide>-->
+        </carousel>
+        <button type="button" class="close close-lg" ng-click="ok()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    </div>
+</div>

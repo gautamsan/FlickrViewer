@@ -2,8 +2,11 @@
  * Created by santoshgautam on 1/4/16.
  */
 angular.module('flickrViewer', [
+  'favorites',
   'ui.router',
-  'ngResource'
+  'ngResource',
+  'ui.bootstrap',
+  'ngAnimate'
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
  $urlRouterProvider.otherwise('/');
@@ -12,20 +15,21 @@ angular.module('flickrViewer', [
      url: '/pictures',
      templateUrl: 'app/partials/pictures.html'
    })
-   .state('comments', {
-     url: '/comments',
-     templateUrl: 'app/partials/comments.html'
-   })
+   .state('favorites', {
+     url: '/favorites',
+     templateUrl: 'app/partials/favorites.html',
+     controller: 'FavoritesCtrl'
+   });
 })
-.controller('MainCtrl', function($scope, $http) {
-  $scope.hello = {};
-  $scope.hello.hi = 'hi';
-  $scope.search = {text: 'nature'};
+.controller('MainCtrl', function($rootScope, $scope, $http, $modal, $state) {
+  $scope.favoritePics = $rootScope.favoritePics;
+  $rootScope.favs = false;
+  $scope.search = {text: 'everest'};
   var key = '4f8b5f95545e8e16789b2db710eae1a8';
   $scope.searchForPics = function () {
     $http({
       method: 'JSONP',
-      params: { api_key: key, tags: $scope.search.text, safe_search: 1, per_page: 20, extras: 'url_m', format: 'json' },
+      params: { api_key: key, tags: $scope.search.text, safe_search: 1, per_page: 20, extras: 'url_l', format: 'json' },
       url: 'https://api.flickr.com/services/rest/?method=flickr.photos.search'
     })
     .success(function(data) {
@@ -35,19 +39,38 @@ angular.module('flickrViewer', [
     jsonFlickrApi = function(data){
       $scope.photos = data.photos;
       console.log(data.photos);
+      $scope.openModal();
     };
   };
 
   $scope.searchForPics();
 
-  $scope.addFav = function(imgLink) {
+  $scope.addFav = function(imgLink, title) {
     console.log(imgLink);
     $http({
       method: 'POST',
-      data: {id: 1, username: 'santosh', picUrl: imgLink},
+      data: {username: 'santosh', picUrl: imgLink, title: title},
       url: '/api/postFav'
     }).success(function(data, status) {
+      $scope.saveFav = true;
+      alert("Saved to favorites");
       console.log(status);
     })
-  }
+  };
+
+  $scope.openModal=function(){
+    $scope.modalInstance=$modal.open({
+      animation: true,
+      templateUrl: 'app/partials/pic-modal.html',
+      scope: $scope,
+      size: 'lg'
+    });
+  };
+
+/*  $scope.goHome = function() {
+    $rootScope.favs = false;
+    $state.go('pictures');
+  }*/
+
+
 });

@@ -1,9 +1,65 @@
-<div class="pictures">
+<!--<div class="pictures">
     <input type="text" ng-model="search.text">
     <button ng-click="searchForPics()">Search</button>
     <ul ng-repeat="picData in photos.photo">
+        <li><img src="{{ picData.url_l }}" alt="{{ picData.title }}"> </li>
+        <li>{{ picData.title }}</li>
+        <li><button ng-click="addFav(picData.url_l, picData.title)">Fav</button></li>
+    </ul>
+</div>-->
+
+<!--<div class="pictures">
+    <input type="text" ng-model="search.text">
+    <button ng-click="searchForPics()">Search</button>
+    <li ng-repeat="picData in photos.photo">
         <li><img src="{{ picData.url_m }}" alt="{{ picData.title }}"> </li>
         <li>{{ picData.title }}</li>
-        <li><button ng-click="addFav(picData.url_m)">Fav</button></li>
-    </ul>
+        <li><button ng-click="addFav(picData.url_m, picData.title)">Fav</button></li>
+    </li>
+</div>-->
+
+<!-- Small modal -->
+<div ng-show="saveFav">
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                Saved to Favorites
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Cat Pictures <small>...that's what the Internet is for, no?</small></h2>
+            <p>Start searching now..</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="text" ng-model="search.text">
+            <button ng-click="searchForPics()">Search</button>
+            <!--<div class="col-xs-6 col-sm-4 col-lg-3 no-padding thumb" ng-repeat="thumb in thumbs">
+                <img ng-src="{{thumb.image}}" alt="{{thumb.name}}" class="img-responsive" ng-click="open($index)" />
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<!--<script type="text/ng-template" id="template/pic-modal.html">
+    <div class="modal-body">
+        <div class="img-group">
+            <carousel>
+                <slide ng-repeat="picData in photos.photo" active="thumb.active">
+                    <div class="heartOutline" ng-click="addFav(picData.url_l, picData.title)">
+                    </div>
+                    <img ng-src="{{picData.url_l}}" alt="{{picData.title}}" class="img-responsive pic" />
+                    <div class="carousel-caption-dark">{{picData.title}}</div>
+                </slide>
+            </carousel>
+            <button type="button" class="close close-lg" ng-click="ok()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        </div>
+    </div>
+</script>-->
+

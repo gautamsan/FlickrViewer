@@ -1,0 +1,56 @@
+.heartOutline {
+    background-image: url('heart.png');
+    height: 77px;
+    width: 77px;
+    margin-left: 394px;
+
+    position: absolute;
+}
+
+.heartOutline:hover {
+    background-image: url('heart_filled.png');
+    height: 77px;
+    width: 77px;
+}
+
+.heartFilled {
+    background-image: url('heart_filled.png');
+    height: 77px;
+    width: 77px;
+    margin-left: 394px;
+
+    position: absolute;
+}
+
+li.heartFilled {
+    background-image: url('heart_filled.png');
+    height: 77px;
+    width: 77px;
+    margin-left: 10px;
+    margin-top: -110px;
+    position: absolute;
+}
+
+.heartFilled:hover {
+    background-image: url('heart.png');
+    height: 77px;
+    width: 77px;
+}
+li.heartFilled:hover {
+    background-image: url('heart.png');
+    height: 77px;
+    width: 77px;
+}
+
+.show-hide {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.show-hide.ng-hide {
+    opacity:0;
+}
+
+ul {
+    list-style-type: none;
+}
