@@ -6,13 +6,11 @@ angular.module('favorites', [
   'ngResource'
 ])
 .controller('FavoritesCtrl', function($rootScope, $scope, $http, $modal) {
-  //$rootScope.favs = true;
   console.log($scope);
   $scope.getFav = function(username) {
     console.log(username);
     $http({
       method: 'GET',
-      //data: {id: 1, username: 'santosh', picUrl: imgLink},
       params: {username: username},
       url: '/api/favs'
     })
@@ -42,9 +40,7 @@ angular.module('favorites', [
       .error(function(err) {
         console.log(err);
       })
-  }
+  };
 
   $scope.getFav("santosh");
-  //$scope.openModal();
-
 });
