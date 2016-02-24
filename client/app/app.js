@@ -66,11 +66,4 @@ angular.module('flickrViewer', [
       size: 'lg'
     });
   };
-
-/*  $scope.goHome = function() {
-    $rootScope.favs = false;
-    $state.go('pictures');
-  }*/
-
-
 });
